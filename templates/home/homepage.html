@@ -1,0 +1,66 @@
+{% extends 'home/base.html' %}
+{% load i18n %}
+
+
+{% block content %}
+
+
+<div class="container mt-5">
+
+    <div class="row ">
+
+        <div class="col-lg-8 col-sm-12 mb-4">
+            <h5 class="mb-2">KATEGORİLER</h5>
+            <hr class="divider">
+            <div class="row">
+        {% for cat, blog in blog_categories.items %}
+        <div class="col-lg-6 col-sm-12 mb-4">
+            <div class="card h-90">
+                <img src="{{cat.category_img.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{cat.category_title}}</h5>
+                    <p class="card-text">{{cat.category_content}}</p>
+                    <a href="/{{blog}}" class="btn btn-danger">BAŞLA !</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+                </div>
+    </div>
+
+       <div class="col-md-4 mb-4">
+           <h5 class="mb-2">SON BLOGLAR</h5>
+           <hr class="divider">
+            <div class="list-group">
+              {% for blog in lastblogs %}
+              <a href="/blogs/{{blog.blog_slug}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{blog.blog_title}}</h5>
+                  <small>{{blog.blog_category}} </small>
+                </div>
+
+                <p class="mb-1">{{blog.blog_content|safe|truncatechars:50}}</p>
+                {% language 'tr' %}
+                <small>{{blog.blog_updated}}</small>
+                {% endlanguage %}
+                {% if blog.ends_within_7_days %}
+                <small>
+                  <span class="badge badge-warning ml-auto">YENİ</span>
+                </small>
+                  {% endif %}
+              </a>
+              {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+

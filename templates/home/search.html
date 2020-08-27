@@ -1,0 +1,55 @@
+{% extends 'home/base.html' %}
+{% load i18n %}
+
+
+{% block content %}
+
+{% if blog %}
+<div class="container">
+    <div class="row">
+
+        {% for b in blog %}
+
+        <div class="col-8">
+            <br>
+        <div class="card">
+            <div class="card-header">
+                Kategori: {{b.blog_category}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{b.blog_title}}</h5>
+                <p class="card-text">{{b.blog_content|truncatechars:100|safe}}</p>
+                <a href="/blogs/{{b.blog_slug}}">Devamını oku...</a>
+            </div>
+            <div class="card-footer text-muted">
+                {% language 'tr' %}
+                    Yayınlandığı tarih: {{b.blog_published}}
+                {% endlanguage  %}
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<br><br>
+    <div class="container">
+        <div class="row">
+            <div class="card" style="width:100%">
+                <div class="card-body mt-2 mb-2">
+                    <h2>
+                        Sonuç yok
+                    </h2>
+                    <p class="card-text">
+                        Aramanızla eşleşen bir sonuç yok: "{{query}}."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+
+{% include 'home/includes/pagination.html' %}
+
+{% endblock %}

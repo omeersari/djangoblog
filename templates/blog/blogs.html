@@ -1,0 +1,41 @@
+{% extends 'home/base.html' %}
+{% load i18n %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+
+        {% for b in blog %}
+
+        <div class="col-8">
+            <br>
+        <div class="card">
+            <div class="card-header">
+                Kategori: {{b.blog_category}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{b.blog_title}}</h5>
+                <p class="card-text">{{b.blog_content|truncatechars:100|safe}}</p>
+                <a href="{{b.blog_slug}}">Devamını oku...</a>
+            </div>
+            <div class="card-footer text-muted">
+                {% language 'tr' %}
+                    Yayınlandığı tarih: {{b.blog_updated.date}}
+                {% endlanguage  %}
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% include 'home/includes/pagination.html' %}
+</div>
+
+
+
+
+{% endblock %}
+
+

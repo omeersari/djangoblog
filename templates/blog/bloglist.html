@@ -1,0 +1,37 @@
+
+{% extends 'home/base.html' %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-2 mb-sm-3 mb-3 mt-5">
+
+            <div class="list-group">
+                {% for blog in sidebar %}
+                    {% if forloop.counter0 == blog_index %}
+                        <a href="/{{blog.blog_slug}}" class="list-group-item list-group-item-action active"> {{blog.blog_title}} </a>
+                    {% else %}
+                        <a href="/{{blog.blog_slug}}" class="list-group-item list-group-item-action"> {{blog.blog_title}} </a>
+                     {% endif %}
+                {% endfor %}
+            </div>
+
+    </div>
+    <div class="col-lg-9  mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{blog.blog_title}}</h5>
+                <p class="card-text">{{blog.blog_content|safe}}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
+
+

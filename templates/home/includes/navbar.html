@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">BenleKODLA</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/blogs">Tüm Bloglar</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Destek Olun
+                </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                <!--<a class="dropdown-item" href="#">Topluluğa Katılın</a> -->
+                <a class="dropdown-item" href="https://twitter.com/benlekodla" target="_blank">Bizi Takip Edin</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Bağışta Bulunun</a>
+            </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">Hakkımızda</a>
+            </li>
+            <form class="form-inline my-2 my-lg-0 ml-lg-5" method="get" action="{% url 'home:search' %}">
+                <input class="form-control mr-sm-2" type="search" name='q' id="id_q" placeholder="Bloglarda Ara" value="{{query}}" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+            </form>
+        </ul>
+
+        <ul class="navbar-nav">
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link mr-2" href="/account">{{request.user.username}}</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" href="/logout"> Çıkış Yap </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="btn btn-outline-primary mr-2" href="/register"> Kaydol</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login"> Giriş </a>
+            </li>
+            {% endif %}
+
+        </ul>
+    </div>
+</nav>
+
+

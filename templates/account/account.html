@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+
+
+{% block content %}
+<br><br>
+<div class="container">
+    <div class="row justify-content-start">
+        <div class="card" style="width: 28rem;">
+            <div class="card-body">
+                <h5 class="card-title"> Merhaba, {{account.username}}</h5>
+                <p class="card-text">Email: {{account.email}}</p>
+                <p class="card-text"><small class="text-muted">Emailinize artık erişemiyorsanız lütfen bizimle <a
+                        href="/about">iletişime</a> geçin.</small></p>
+                <a href="/password_change" class="btn btn-warning">Şifre Değiştir</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
